@@ -1,0 +1,14 @@
+<h2>アイデア登録</h2>
+<%= form_with(model: @category, local: true) do |f| %>
+  <div>
+  <%= f.text_field :name, placeholder: "category_name" %>
+  </div>
+  <div>
+  <%= f.fields_for :ideas do |idea| %>
+    <% idea.text_area :body, placeholder: "アイデア本文" %>
+  <% end %>
+  </div>
+  <div>
+  <%= f.submit "登録" %>
+  </div>
+<% end %>

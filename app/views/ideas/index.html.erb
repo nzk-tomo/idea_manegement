@@ -1,0 +1,29 @@
+<h2>カテゴリーを選択してください</h2>
+<h4>選択しなかった場合全てのアイデアが表示されます</h4>
+<div>
+  <%=form_with model: @categories, url: ideas_path, local: true do |f|%>
+    <select>
+      <option>---</option>
+      <% @categories.all.each do |category| %>
+        <option value=<%=category.id%>><%= category.name %></option>
+      <% end %>
+    </select>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
+<table border="1">
+  <thead>
+    <tr>
+      <th>カテゴリー</th>
+      <th>アイデア</th>
+    </tr>
+  </thead>
+  <% @ideas.each do |idea| %>
+  <tbody>
+    <tr>
+      <td><%= @categories[idea.category_id-1][:name] %></td>
+      <td><%= idea.body %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
